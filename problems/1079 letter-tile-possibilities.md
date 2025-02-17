@@ -1,0 +1,30 @@
+# Letter Tile Possibilities
+
+**Difficulty:** Medium
+
+**Topics:** Hash Table, String, Backtracking, Counting
+
+**Bookmark:**
+
+```python
+class Solution:
+    def numTilePossibilities(self, tiles: str) -> int:
+        s = set()
+        dd = dict()
+
+        for t in tiles:
+            dd[t] = dd.get(t, 0) + 1
+
+        def backtrack(seq, d):
+            if len(seq) > 0:
+                s.add(seq)
+
+            for k in list(d.keys()):
+                if d[k] > 0:
+                    d[k] -= 1
+                    backtrack(seq + k, d)
+                    d[k] += 1
+
+        backtrack("", dd)
+        return len(s)
+```
