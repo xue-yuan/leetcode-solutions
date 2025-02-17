@@ -1,6 +1,6 @@
 #! /bin/bash
 
-title_slug=$(echo "$1" | awk -F'/' '{print $(NF-2)}')
+title_slug=$(echo "$1" | awk -F'/' '{print $(NF-1)}')
 title=$(echo "$title_slug" | tr '-' ' ' | awk '{for (i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)}1')
 filename="problems/$2. $title_slug.md"
 
